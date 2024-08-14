@@ -25,28 +25,36 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.sizeOf(context).width * 1;
+    var h = MediaQuery.sizeOf(context).height * 1;
     return Scaffold(
       backgroundColor: appcolors.back,
       appBar: appbar(),
       body: Column(
         children: [
-          SerchBar(),
+          Container(child: SerchBar()),
           Expanded(
               child: Container(
             width: w,
-            child: FutureBuilder(
-                future: news,
+            child: FutureBuilder<List>(
+                future: fetchingNews(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return ListView.builder(
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return NewsBox(
-                          url: snapshot.data![index]['url'],
-                          imageurl: snapshot.data![index]['urlToImage']!=null?snapshot.data![index]['urlToImage']:Containt.imageurl,
-                          description:snapshot.data![index]['description'].toString(),
-                          title:snapshot.data![index]['title'],
-                          time: snapshot.data![index]['publishedAt'],
+                        return Container(
+                          width: w,
+                          height: 160,
+                          child: snapshot.data![index]['urlToImage'] != null?NewsBox(
+                            url: snapshot.data![index]['url'],
+                            imageurl: snapshot.data![index]['urlToImage'] != null
+                                ? snapshot.data![index]['urlToImage']
+                                : Containt.imageurl,
+                            description:
+                                snapshot.data![index]['description'].toString(),
+                            title: snapshot.data![index]['title'],
+                            time: snapshot.data![index]['publishedAt'],
+                          ):Container(height: 0,),
                         );
                       },
                     );

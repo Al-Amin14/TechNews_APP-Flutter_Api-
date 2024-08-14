@@ -5,7 +5,7 @@ import 'package:tech_news_app/utils/colors.dart';
 
 class SerchBar extends StatefulWidget {
   const SerchBar({super.key});
-  static TextEditingController serchBarState = TextEditingController();
+  static TextEditingController serchBarState = TextEditingController(text:'');
 
   @override
   State<SerchBar> createState() => _SerchBarState();

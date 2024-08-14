@@ -10,7 +10,21 @@ class normal_text extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.poppins(color:color,fontSize: size),
+      style: GoogleFonts.poppins(color:color,fontSize: size,),
+      maxLines: 3,
+      overflow: TextOverflow.fade,
+    );
+  }
+}
+class normal_text_description extends StatelessWidget {
+  final String text;
+  final double size;
+  final Color color;
+  const normal_text_description({super.key,required this.text, required this.size, required this.color});
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.poppins(color:color,fontSize: size,),
     );
   }
 }
@@ -24,6 +38,7 @@ class boldText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,style: GoogleFonts.poppins(color: color,fontSize: size,fontWeight: FontWeight.bold),
+      maxLines: 3,
     );
   }
 }
